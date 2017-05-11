@@ -1,10 +1,5 @@
 require_relative '../spec_helper'
 
-#As a user when I fill out Create new station form
-#and then i click submit
-#i expect to be redirected to the page for the new station
-
-
 RSpec.describe "user can click the submit button on a form" do
   it "will redirect to the page for that individual station" do
     City.create(name: "Rockville")

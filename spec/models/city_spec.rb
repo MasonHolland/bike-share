@@ -17,7 +17,7 @@ RSpec.describe City do
     end
   end
 
-  describe "access to stations" do 
+  describe "access to stations" do
     it "can access station name" do
       City.create(name: "San Jose")
       city = City.find(1)

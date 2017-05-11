@@ -22,7 +22,6 @@ RSpec.describe "user can fill in form" do
                               bike_id: 122,
                               zip_code: 80218)
 
-
       visit('/trips/1/edit')
       fill_in "trip[duration]", with: 300
       fill_in "trip[start_date_id]", with: "2013-5-11"

@@ -1,10 +1,5 @@
 require_relative '../spec_helper'
 
-# User viewing a particular station
-# And clicking on the delete button
-# Is redirected to the view all page
-# And does not contain deleted station
-
 RSpec.describe "user can delete a station" do
   it "takes you to view all page and entry is deleted" do
     city = City.create(name: "Vancover")

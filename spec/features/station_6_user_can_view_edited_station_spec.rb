@@ -1,9 +1,5 @@
 require_relative '../spec_helper'
 
-# User can edit a particular station
-# And clicks submit
-# And expects to view updated
-
 RSpec.describe "user can fill in form" do
   it "it updates page with correct information" do
       city = City.create(name: "Washington DC")

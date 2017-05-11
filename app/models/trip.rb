@@ -26,7 +26,7 @@ class Trip < ActiveRecord::Base
       shortest_ride_id: Trip.order("duration DESC").last.id
     }
   end
-  
+
   def self.dashboard_station
     {
       most_common_starting_station: Trip.most_common_starting_station,

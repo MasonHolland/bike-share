@@ -32,9 +32,6 @@ class BikeShareApp < Sinatra::Base
   end
 
   get '/stations/:id' do
-    @start_date = StartDate.all
-    @start_station = StartStation.all
-    @end_station = EndStation.all
     @station = Station.find(params[:id])
     @station_data = Station.data_analysis(@station.id)
     erb :"stations/show"
@@ -50,8 +47,6 @@ class BikeShareApp < Sinatra::Base
     @station = Station.find(params[:id])
     @station.update(params[:station])
     @station.update_city_id(params[:city][:name], @station)
-    # city = City.find_by name: params[:city]["name"]
-    # Station.find(params:id]).update(city_id: city.id)
     redirect "stations/#{@station.id}"
   end
 
@@ -159,7 +154,6 @@ class BikeShareApp < Sinatra::Base
 
   get '/conditions/:id' do
     @condition = Condition.find(params[:id])
-
     erb :"conditions/show"
   end
 
@@ -185,5 +179,4 @@ class BikeShareApp < Sinatra::Base
   get '/condition-dashboard' do
     erb :"condition-dashboard"
   end
-
 end

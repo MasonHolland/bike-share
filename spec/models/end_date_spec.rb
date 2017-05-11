@@ -13,7 +13,7 @@ RSpec.describe EndDate do
     it "is invalid without a ride date id" do
       RideDate.create(day: 12, month: 9, year: 2012)
       end_date = EndDate.create(ride_date_id: nil)
-      
+
       expect(end_date).to be_invalid
     end
   end

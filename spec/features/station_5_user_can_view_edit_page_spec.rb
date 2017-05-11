@@ -1,10 +1,5 @@
 require_relative '../spec_helper'
 
-#As a user when I am on the additional info page
-# and click on the edit link
-# I expect to be redirected to an edit page
-# and see a form to edit station info
-
 RSpec.describe "when a user visits the edit page" do
   it "displays an edit form" do
     city = City.create(name: "Denver")
