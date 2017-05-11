@@ -16,7 +16,7 @@
   <p>Please update fields to change weather conditions.</p>
   <input type="hidden" name="_method" value="PUT">
   <h2>Date</h2>
-  <input type="date" name="condition[date]" value="<%= @condition.ride_date.day %>">
+  <input type="text" name="condition[ride_date_id]">
   <h2>Max Temperature</h2>
   <input type="integer" name="condition[max_temperature]" value="<%= @condition.max_temperature %>">
   <h2>Mean Temperature</h2>
