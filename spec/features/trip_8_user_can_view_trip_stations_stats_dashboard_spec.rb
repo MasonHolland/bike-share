@@ -30,17 +30,16 @@ RSpec.describe "when user visits station dashboard" do
                                   zip_code: 80219)
 
     visit('/trips-dashboard')
-    save_and_open_page
+    
     expect(page).to have_content("Average duration of a ride: 203")
     expect(page).to have_content("Longest ride: ID# 1")
     expect(page).to have_content("Shortest ride: ID# 2")
     expect(page).to have_content("Station with the most rides as a starting place: MLK Station")
     expect(page).to have_content("Station with the most rides as an ending place: Cesar Chavez Station")
-    expect(page).to have_content("Month by Month breakdown of number of rides with subtotals for each year: {[2012, 8]=>2}")
     expect(page).to have_content("Most ridden bike with total number of rides for that bike: Bike ID: 800 Trips Taken: 1")
     expect(page).to have_content("Least ridden bike with total number of rides for that bike: Bike ID: [122, 800] Trips Taken: 1")
     expect(page).to have_content("User subscription type breakout with both count and percentage: Subscriber Total users: 0 Percentage of users: 0% Customer Total users: 2 Percentage of users: 100%")
-    expect(page).to have_content("Single date with the highest number of trips with a count of those trips: 800")
-    expect(page).to have_content("Single date with the lowest number of trips with a count of those trips: 2")
+    expect(page).to have_content("Single date with the highest number of trips with a count of those trips: 8/12/2012 - 2")
+    expect(page).to have_content("Single date with the lowest number of trips with a count of those trips: 8/12/2012 - 2")
   end
 end

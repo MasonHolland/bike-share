@@ -128,12 +128,11 @@ class BikeShareApp < Sinatra::Base
   end
 
   get '/trips-dashboard' do
-    @subscription_types = SubscriptionType.all
-    @ride_date = RideDate.all
-    @trips = Trip.all
-    @start_stations = StartStation.all
-    @end_stations = EndStation.all
-    @trip_dashboard = Trip.dashboard_analysis
+    @dashboard_duration = Trip.dashboard_duration
+    @dashboard_station = Trip.dashboard_station
+    @dashboard_subscriptions = Trip.dashboard_subscriptions
+    @dashboard_dates = Trip.dashboard_dates
+    @dashboard_bikes = Trip.dashboard_bikes
     erb :"trips-dashboard"
   end
 
@@ -160,7 +159,7 @@ class BikeShareApp < Sinatra::Base
 
   get '/conditions/:id' do
     @condition = Condition.find(params[:id])
-    
+
     erb :"conditions/show"
   end
 

@@ -24,29 +24,11 @@
 <p><span class="show-attribute">Most frequent origination station (for rides that ended at this station): </span>
     <%= @station_data[:most_frequent_origination_station] %></p>
 <p><span class="show-attribute">Date with the highest number of trips started at this station: </span>
-<% if @station.start_station.nil? %>
-<%= "No rides have started at this station" %>
-<% else %>
-<% trips = @station.start_station.trips %>
-  <% start_date_id = trips.group(:start_date_id).order("count_id asc").count('id').keys.last %>
-  <% start_date = @start_date.find(start_date_id) %>
-  <%= start_date.ride_date.month %>-<%= start_date.ride_date.day %>-<%= start_date.ride_date.year %><% end %></p>
+<%= @station_data[:date_with_most_trips] %></p>
 <p><span class="show-attribute">Most frequent zip code for users starting trips at this station: </span>
-<% if @station.start_station.nil? %>
-<%= "No rides have started at this station" %>
-<% else %>
-<% trips = @station.start_station.trips %>
-<% zip = trips.group(:zip_code).order("count_id asc").count('id').keys.last %>
-<% if zip.nil? %>
-  <%  zip = trips.group(:zip_code).order("count_id asc").count('id').keys[-2] %>
-<% end %>
-<%= zip %><% end %></p>
+<%= @station_data[:most_frequent_zip_at_station] %></p>
 <p><span class="show-attribute">Bike ID most frequently starting a trip at this station: </span>
-<% if @station.start_station.nil? %>
-<%= "No rides have started at this station" %>
-<% else %>
-<% trips = @station.start_station.trips %>
-  <%= trips.group(:bike_id).order("count_id asc").count('id').keys.last %><% end %></p>
+<%= @station_data[:most_frequent_bike_id_at_station] %></p>
 <div class="edit-delete>"
   <button type="button"><a href="/stations/<%=@station.id%>/edit">Edit</a></button>
   <form action="/stations/<%=@station.id%>" method="post">
@@ -56,5 +38,3 @@
 </div>
 <p><a href="/stations/view_all">Back to View All</a></p>
 </div>
-
-
