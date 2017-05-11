@@ -99,11 +99,15 @@ th {
 tr {
   color: white;
   padding-top: 5px;
-  padding-bottom: 5px%;
+  padding-bottom: 5px;
 }
 
 trips-table th, tr {
   font-size: .9em;
+}
+
+.conditions tr {
+  text-align: center;
 }
 
 .show {

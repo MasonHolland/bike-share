@@ -1,17 +1,26 @@
+<header>
+  <a href="/"><img src="/bike_share_logo.jpg"></a>
+  <nav>
+    <ul>
+      <li><a class="current_page" href="/conditions">Weather</a></li>
+      <li><a href="/trips">Trips</a></li>
+      <li><a href="/stations">Stations</a></li>
+    </ul>
+  </nav>
+</header>
 
-<title>New Conditions</title>
-
-<h1>New Conditions</h1>
-
+<div class="show">
 <form action="/conditions" method="post">
-  <p>Create New Conditions</p>
-  Date<input type="text" name="condition[ride_date_id]"/><br>
-  Max Temperature<input type="integer" name="condition[max_temperature]"/><br>
-  Mean Temperature<input type="integer" name="condition[mean_temperature]"/><br>
-  Min Temperature<input type="integer" name="condition[min_temperature]"/><br>
-  Mean Humidity<input type="integer" name="condition[mean_humidity]"/><br>
-  Mean Visibility (in Miles)<input type="integer" name="condition[mean_visibility]"/><br>
-  Mean Wind Speed (mph)<input type="integer" name="condition[mean_wind_speed]"/><br>
-  Precipitation (inches)<input type="integer" name="condition[precipitation]"/><br>
+  <h1>Create New Weather Condition</h1>
+  <h2>Date: <input type="text" name="condition[ride_date_id]"/></h2>
+  <h2>Max Temperature: <input type="integer" name="condition[max_temperature]"/></h2>
+  <h2>Mean Temperature: <input type="integer" name="condition[mean_temperature]"/></h2>
+  <h2>Min Temperature: <input type="integer" name="condition[min_temperature]"/></h2>
+  <h2>Mean Humidity: <input type="integer" name="condition[mean_humidity]"/></h2>
+  <h2>Mean Visibility (in Miles): <input type="integer" name="condition[mean_visibility]"/></h2>
+  <h2>Mean Wind Speed (mph): <input type="integer" name="condition[mean_wind_speed]"/></h2>
+  <h2>Precipitation (inches): <input type="integer" name="condition[precipitation]"/></h2>
   <input type="submit" value="Submit"/>
 </form>
+<p><a href="/conditions">Back to Weather Conditions</a></p>
+</div>
