@@ -36,6 +36,7 @@ class BikeShareApp < Sinatra::Base
     @start_station = StartStation.all
     @end_station = EndStation.all
     @station = Station.find(params[:id])
+    @station_data = Station.data_analysis(@station.id)
     erb :"stations/show"
   end
 
@@ -61,6 +62,7 @@ class BikeShareApp < Sinatra::Base
 
   get '/station-dashboard' do
     @stations = Station.all
+    @station_dashboard = Station.dashboard_analysis
     erb :"station-dashboard"
   end
 
@@ -126,11 +128,11 @@ class BikeShareApp < Sinatra::Base
   end
 
   get '/trips-dashboard' do
-    @subscription_types = SubscriptionType.all
-    @ride_date = RideDate.all
-    @trips = Trip.all
-    @start_stations = StartStation.all
-    @end_stations = EndStation.all
+    @dashboard_duration = Trip.dashboard_duration
+    @dashboard_station = Trip.dashboard_station
+    @dashboard_subscriptions = Trip.dashboard_subscriptions
+    @dashboard_dates = Trip.dashboard_dates
+    @dashboard_bikes = Trip.dashboard_bikes
     erb :"trips-dashboard"
   end
 
@@ -143,8 +145,11 @@ class BikeShareApp < Sinatra::Base
   end
 
   post '/conditions' do
-    Condition.create(params[:condition])
-    redirect "/conditions/#{condition.id}"
+    @conditions = params[:condition]
+    @conditions[:ride_date_id] = RideDate.find_or_create_by(RideDate.format_date_hash(@conditions[:ride_date_id])).id
+    @ride_date = RideDate.find_or_create_by(params[:date])
+    @condition = Condition.create(params[:condition])
+    redirect "/conditions/#{@condition.id}"
   end
 
   get '/conditions/view_all' do
@@ -153,23 +158,30 @@ class BikeShareApp < Sinatra::Base
   end
 
   get '/conditions/:id' do
-    @station = Station.find(params[:id])
+    @condition = Condition.find(params[:id])
+
     erb :"conditions/show"
   end
 
   get '/conditions/:id/edit' do
-    @conditions = Condition.all
+    @condition = Condition.find(params[:id])
+    @ride_date = RideDate.find(@condition.ride_date.id)
     erb :"conditions/edit"
   end
 
   put '/conditions/:id' do |id|
     @condition = Condition.find(params[:id])
-    redirect "conditions/#{@condition.id}"
+    @condition.update(params[:condition])
+    redirect "conditions/#{params[:id]}"
   end
 
   delete '/conditions/:id' do |id|
     Condition.destroy(id.to_i)
     redirect "/conditions/view_all"
+  end
+
+  get '/condition-dashboard' do
+    erb :"condition-dashboard"
   end
 
 end

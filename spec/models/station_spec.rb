@@ -21,26 +21,26 @@ RSpec.describe Station do
       expect(station_1).to_not be_valid
     end
 
-      it "is invalid without a dock count" do
-        city = City.create(name: "San Jose")
-        station_1 = Station.create(name: "MLK Station",city_id: 1, installation_date: "2013-5-11")
+    it "is invalid without a dock count" do
+      city = City.create(name: "San Jose")
+      station_1 = Station.create(name: "MLK Station",city_id: 1, installation_date: "2013-5-11")
 
-        expect(station_1).to_not be_valid
-      end
+      expect(station_1).to_not be_valid
+    end
 
-      it "is invalid without a city_id" do
-        city = City.create(name: "San Jose")
-        station_1 = Station.create(name: "MLK Station", dock_count: 19, installation_date: "2013-5-11")
+    it "is invalid without a city_id" do
+      city = City.create(name: "San Jose")
+      station_1 = Station.create(name: "MLK Station", dock_count: 19, installation_date: "2013-5-11")
 
-        expect(station_1).to_not be_valid
-      end
+      expect(station_1).to_not be_valid
+    end
 
-      it "is invalid without an installation_date" do
-        city = City.create(name: "San Jose")
-        station_1 = Station.create(name: "MLK Station", city_id: 1, dock_count: 19)
+    it "is invalid without an installation_date" do
+      city = City.create(name: "San Jose")
+      station_1 = Station.create(name: "MLK Station", city_id: 1, dock_count: 19)
 
-        expect(station_1).to_not be_valid
-      end
+      expect(station_1).to_not be_valid
+    end
   end
 
   describe "data processing methods" do

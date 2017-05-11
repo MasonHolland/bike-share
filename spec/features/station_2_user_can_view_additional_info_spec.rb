@@ -21,9 +21,26 @@ RSpec.describe 'use can view an individual stations page' do
 
     visit("/stations/view_all")
     click_on "Additional Info"
-
     expect(current_path).to eq("/stations/1")
     expect(page).to have_content("MLK")
     expect(page).to have_content("Edit")
+    expect(page).to have_content("Number of rides started at this station: 1")
+    expect(page).to have_content("Number of rides ended at this station: 1")
+    expect(page).to have_content("Most frequent destination station (for rides that began at this station): MLK")
+    expect(page).to have_content("Most frequent origination station (for rides that ended at this station): MLK")
+    expect(page).to have_content("Date with the highest number of trips started at this station: 8-12-2012")
+    expect(page).to have_content("Most frequent zip code for users starting trips at this station: 80218")
+    expect(page).to have_content("Bike ID most frequently starting a trip at this station: 122")
   end
 end
+
+
+
+
+
+
+
+
+
+
+

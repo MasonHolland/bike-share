@@ -1,29 +1,38 @@
+<header>
+  <a href="/"><img src="/bike_share_logo.jpg"></a>
+  <nav>
+    <ul>
+      <li><a class="current_page" href="/trips">Trips</a></li>
+      <li><a href="/stations">Stations</a></li>
+      <li><a href="/conditions">Weather</a></li>
+    </ul>
+  </nav>
+</header>
 
-<title>New Trip</title>
-
-<h1>New Trip</h1>
-
+<div class="show">
 <form action="/trips" method="post">
-  <p>Create A New Trip</p>
-  Starting Station<select name="trip[start_station_id]">
+  <h1>Create A New Trip</h1>
+  <h2>Starting Station: <select name="trip[start_station_id]">
     <% @start_stations.each do |start_station| %>
     <option value="<%= start_station.id %>"><%= start_station.station.name %></option>
     <% end %>
-  </select><br>
-  Ending Station<select name="trip[end_station_id]">
+  </select></h2>
+  <h2>Ending Station: <select name="trip[end_station_id]">
     <% @end_stations.each do |end_station| %>
     <option value="<%= end_station.id %>"><%= end_station.station.name %></option>
     <% end %>
-  </select><br>
-  Zipcode<input type="integer" name="trip[zip_code]"/><br>
-  Bike ID<input type="integer" name="trip[bike_id]"/><br>
-  Duration<input type="integer" name="trip[duration]"/><br>
-  Start Date(Format: YYYY-MM-DD)<input type="text" name="trip[start_date_id]"/><br>
-  End Date(Format: YYYY-MM-DD)<input type="text" name="trip[end_date_id]"/><br>
-  Subscription Type<select name="subscription_type[name]">
+  </select></h2>
+  <h2>Zipcode: <input type="integer" name="trip[zip_code]"/></h2>
+  <h2>Bike ID: <input type="integer" name="trip[bike_id]"/></h2>
+  <h2>Duration: <input type="integer" name="trip[duration]"/></h2>
+  <h2>Start Date (Format: YYYY-MM-DD): <input type="text" name="trip[start_date_id]"/></h2>
+  <h2>End Date (Format: YYYY-MM-DD): <input type="text" name="trip[end_date_id]"/></h2>
+  <h2>Subscription Type: <select name="subscription_type[name]">
     <% @subscription_types.each do |subscription_type| %>
     <option value="<%= subscription_type.name %>"><%= subscription_type.name %></option>
     <% end %>
-  </select><br>
+  </select></h2>
   <input type="submit" value="Submit"/>
 </form>
+<p><a href="/trips">Back to Trips</a></p>
+</div>

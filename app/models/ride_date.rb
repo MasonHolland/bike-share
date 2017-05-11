@@ -4,6 +4,7 @@ class RideDate < ActiveRecord::Base
 
   has_one :start_date
   has_one :end_date
+  has_one :condition
 
   validates :day, presence: true
   validates :month, presence: true

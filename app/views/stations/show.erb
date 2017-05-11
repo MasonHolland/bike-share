@@ -1,38 +1,40 @@
+<header>
+      <a href="/"><img src="/bike_share_logo.jpg"></a>
+      <nav>
+        <ul>
+          <li><a class="current_page" href="/stations">Stations</a></li>
+          <li><a href="/trips">Trips</a></li>
+          <li><a href="/conditions">Weather</a></li>
+        </ul>
+      </nav>
+    </header>
+
+<div class="show">
 <h1><%= @station.name %></h1>
+<p><span class="show-attribute">City: </span><%= @station.city.name %></p>
+<p><span class="show-attribute">Dock Count: </span><%= @station.dock_count %></p>
+<p><span class="show-attribute">Installation Date: </span><%= @station.installation_date %></p>
 
-<h3>City: <%= @station.city.name %></h3>
-<h3>Dock Count: <%= @station.dock_count %></h3>
-<h3>Installation Date: <%= @station.installation_date %></h3>
-
-<h3> Number of rides started at this station</h3>
-<h4><%= @station.start_station.trips.count %></h4>
-<h3>Number of rides ended at this station </h3>
-<h4><%= @station.end_station.trips.count %></h4>
-<h3>Most frequent destination station (for rides that began at this station)</h3>
-<h4> <% end_station_id = @station.start_station.trips.group(:end_station_id).order('count_id asc').count('id').keys.last %>
-  <%= @end_station.find(end_station_id).station.name %>
-</h4>
-<h3>Most frequent origination station (for rides that ended at this station)</h3>
-<h4><% start_station_id = @station.end_station.trips.group(:start_station_id).order('count_id asc').count('id').keys.last %>
-<%= @start_station.find(start_station_id).station.name %></h4>
-<h3>Date with the highest number of trips started at this station</h3>
-<h4><% trips = @station.start_station.trips %>
-  <% start_date_id = trips.group(:start_date_id).order("count_id asc").count('id').keys.last %>
-  <% start_date = @start_date.find(start_date_id) %>
-  <%= start_date.ride_date.month %>-<%= start_date.ride_date.day %>-<%= start_date.ride_date.year %></h4>
-<h3>Most frequent zip code for users starting trips at this station</h3>
-<h4><% trips = @station.start_station.trips %>
-<% zip = trips.group(:zip_code).order("count_id asc").count('id').keys.last %>
-<% if zip.nil? %>
-  <%  zip = trips.group(:zip_code).order("count_id asc").count('id').keys[-2] %>
-<% end %>
-<%= zip %></h4>
-<h3>Bike ID most frequently starting a trip at this station</h3>
-<h4><% trips = @station.start_station.trips %>
-  <%= trips.group(:bike_id).order("count_id asc").count('id').keys.last %>
-</h4>
-<a href="/stations/<%=@station.id%>/edit">Edit</a>
-<form action="/stations/<%=@station.id%>" method="post">
-  <input type="hidden" name="_method" value="DELETE">
-  <input type="submit" value="Delete">
-</form>
+<p><span class="show-attribute">Number of rides started at this station: </span>
+    <%= @station_data[:rides_started_at_station] %></p>
+<p><span class="show-attribute">Number of rides ended at this station: </span>
+    <%= @station_data[:rides_ended_at_station] %>
+<p><span class="show-attribute">Most frequent destination station (for rides that began at this station): </span>
+    <%= @station_data[:most_frequent_destination_station] %></p>
+<p><span class="show-attribute">Most frequent origination station (for rides that ended at this station): </span>
+    <%= @station_data[:most_frequent_origination_station] %></p>
+<p><span class="show-attribute">Date with the highest number of trips started at this station: </span>
+<%= @station_data[:date_with_most_trips] %></p>
+<p><span class="show-attribute">Most frequent zip code for users starting trips at this station: </span>
+<%= @station_data[:most_frequent_zip_at_station] %></p>
+<p><span class="show-attribute">Bike ID most frequently starting a trip at this station: </span>
+<%= @station_data[:most_frequent_bike_id_at_station] %></p>
+<div class="edit-delete>"
+  <button type="button"><a href="/stations/<%=@station.id%>/edit">Edit</a></button>
+  <form action="/stations/<%=@station.id%>" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+  </form>
+</div>
+<p><a href="/stations/view_all">Back to View All</a></p>
+</div>

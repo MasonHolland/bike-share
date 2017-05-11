@@ -1,16 +1,30 @@
+<header>
+  <a href="/"><img src="/bike_share_logo.jpg"></a>
+  <nav>
+    <ul>
+      <li><a class="current_page" href="/trips">Trips</a></li>
+      <li><a href="/stations">Stations</a></li>
+      <li><a href="/conditions">Weather</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="show">
 <h1>Trip Number #<%= @trip.id %></h1>
 
-<h3>Duration: <%= @trip.duration %></h3>
-<h3>Starting Station: <%= @trip.start_station.station.name %></h3>
-<h3>Ending Station: <%= @trip.end_station.station.name %></h3>
-<h3>Zipcode: <%= @trip.zip_code %></h3>
-<h3>Bike ID: <%= @trip.bike_id %></h3>
-<h3>Start Date: <%= @trip.start_date.day %>/<%= @trip.start_date.month %>/<%= @trip.start_date.year %></h3>
-<h3>End Date: <%= @trip.end_date.day %>/<%= @trip.end_date.month %>/<%= @trip.end_date.year %></h3>
-<h3>Subscription Type: <%= @trip.subscription_type.name %></h3>
+<p><span class="show-attribute">Duration: </span><%= @trip.duration %></p>
+<p><span class="show-attribute">Starting Station: </span><%= @trip.start_station.station.name %></p>
+<p><span class="show-attribute">Ending Station: </span><%= @trip.end_station.station.name %></p>
+<p><span class="show-attribute">Zipcode: </span><%= @trip.zip_code %></p>
+<p><span class="show-attribute">Bike ID: </span><%= @trip.bike_id %></p>
+<p><span class="show-attribute">Start Date: </span><%= @trip.start_date.day %>/<%= @trip.start_date.month %>/<%= @trip.start_date.year %></p>
+<p><span class="show-attribute">End Date: </span><%= @trip.end_date.day %>/<%= @trip.end_date.month %>/<%= @trip.end_date.year %></p>
+<p><span class="show-attribute">Subscription Type: </span><%= @trip.subscription_type.name %></p>
 
 <a href="/trips/<%=@trip.id%>/edit">Edit</a>
 <form action="/trips/<%=@trip.id%>" method="post">
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete">
 </form>
+<p><a href="/trips">Back to Trips</a></p>
+</div>

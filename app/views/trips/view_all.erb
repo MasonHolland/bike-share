@@ -1,6 +1,15 @@
-<h1>All Trips</h1>
+<header>
+  <a href="/"><img src="/bike_share_logo.jpg"></a>
+  <nav>
+    <ul>
+      <li><a class="current_page" href="/trips">Trips</a></li>
+      <li><a href="/stations">Stations</a></li>
+      <li><a href="/conditions">Weather</a></li>
+    </ul>
+  </nav>
+</header>
 
-<table>
+<table class="trips-table">
   <tr>
     <th>ID</th>
     <th>Start Date</th>
@@ -12,8 +21,8 @@
     <th>Subscription Type</th>
     <th>Additional Info</th>
     <th>Delete</th>
-
   </tr>
+
   <% @trips.each do |trip| %>
   <tr>
     <td><%= trip.id %></td>
@@ -32,5 +41,7 @@
   <% end %>
   </tr>
 </table>
+
+<footer></footer>
 
 <%= will_paginate @trips %>

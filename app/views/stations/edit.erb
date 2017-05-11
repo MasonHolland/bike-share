@@ -1,16 +1,28 @@
-<h1>Edit <%= @station.name %></h1>
+<header>
+  <a href="/"><img src="/bike_share_logo.jpg"></a>
+  <nav>
+    <ul>
+      <li><a class="current_page" href="/stations">Stations</a></li>
+      <li><a href="/trips">Trips</a></li>
+      <li><a href="/conditions">Weather</a></li>
+    </ul>
+  </nav>
+</header>
 
+<div class="show">
+<h1>Edit <%= @station.name %></h1>
 <form action="/stations/<%=@station.id%>" method="post">
-  <p>Please fill in all fields with information you would like to change</p>
+  <p>Please fill in all fields to change station.</p>
   <input type="hidden" name="_method" value="PUT">
   <h2>Name</h2>
   <input type="text" name="station[name]" value="<%= @station.name %>">
-  <!-- <h2>City</h2>
+  <h2>City</h2>
   <input type="text" name="city[name]" value="<%= @station.city.name %>"> -->
   <h2>Dock Count</h2>
   <input type="text" name="station[dock_count]" value="<%= @station.dock_count %>">
   <h2>Installation Date</h2>
   <input type="text" name="station[installation_date]" value="<%= @station.installation_date %>">
+  <h2>City Name</h2>
   <select name="city[name]">
     <% @cities.each do |city| %>
     <option value="<%= city.name %>"><%= city.name %></option>
@@ -18,3 +30,5 @@
   </select>
   <input type="submit" value="Submit changes">
 </form>
+<p><a href="/stations">Back to Stations</a></p>
+</div>

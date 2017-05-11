@@ -11,13 +11,13 @@ RSpec.describe "when user visits station dashboard" do
 
     visit('/station-dashboard')
     expect(page).to have_content("Station Statistics")
-    expect(page).to have_content("Total count of stations")
-    expect(page).to have_content("Average bikes available per station")
-    expect(page).to have_content("Most bikes available at a station")
-    expect(page).to have_content("Station(s) where the most bikes are available")
-    expect(page).to have_content("Fewest bikes available at a station")
-    expect(page).to have_content("Station(s) where the fewest bikes are available")
-    expect(page).to have_content("Most recently installed station")
-    expect(page).to have_content("Oldest station")
+    expect(page).to have_content("Total count of stations: 5")
+    expect(page).to have_content("Average bikes available per station: 18")
+    expect(page).to have_content("Most bikes available at a station: 30")
+    expect(page).to have_content("Station(s) where the most bikes are available: MLK Milk")
+    expect(page).to have_content("Fewest bikes available at a station: 1")
+    expect(page).to have_content("Station(s) where the fewest bikes are available: Simpson")
+    expect(page).to have_content("Most recently installed station: PBJ")
+    expect(page).to have_content("Oldest station: MLK")
   end
 end

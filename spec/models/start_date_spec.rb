@@ -8,6 +8,16 @@ RSpec.describe StartDate do
       expect(start_date.ride_date_id).to eq(1)
     end
   end
+
+  describe "validations" do
+    it "is invalid without a ride date id" do
+      RideDate.create(day: 12, month: 9, year: 2012)
+      start_date = StartDate.create(ride_date_id: nil)
+
+      expect(start_date).to be_invalid
+    end
+  end
+
   describe "relationships" do
     it "can access ride date attributes" do
       RideDate.create(day: 12, month: 9, year: 2012)

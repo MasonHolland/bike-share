@@ -7,8 +7,8 @@ require './app/models/trip.rb'
 require './app/models/ride_date.rb'
 require './app/models/start_date.rb'
 require './app/models/end_date.rb'
+require './app/models/condition.rb'
 require 'csv'
-require 'pry'
 
 City.destroy_all
 Station.destroy_all
@@ -19,6 +19,7 @@ Trip.destroy_all
 StartDate.destroy_all
 EndDate.destroy_all
 RideDate.destroy_all
+Condition.destroy_all
 
 def format_date(unformatted_date)
   date_elements = unformatted_date.split("/")
@@ -51,7 +52,7 @@ trip_text = File.read('./db/csv/trip.csv')
 trip = CSV.parse(trip_text, :headers => true, header_converters: :symbol)
 trip.each do |row|
   ride_date_start = RideDate.find_or_create_by!(format_date_hash(row[:start_date]))
-  ride_date_end = RideDate.find_or_create_by!(format_date_hash(row[:start_date]))
+  ride_date_end = RideDate.find_or_create_by!(format_date_hash(row[:end_date]))
   start_date = StartDate.find_or_create_by!(ride_date_id: ride_date_start.id)
   end_date = EndDate.find_or_create_by!(ride_date_id: ride_date_end.id)
   start_station = Station.find_by(name: row[:start_station_name])
@@ -65,4 +66,26 @@ trip.each do |row|
                             end_date_id: end_date.id,
                             bike_id: row[:bike_id],
                             zip_code: format_zip_code(row[:zip_code]))
+end
+
+condition_text = File.read('./db/csv/weather.csv')
+condition = CSV.parse(condition_text, :headers => true, header_converters: :symbol)
+condition.each do |row|
+  ride_date_id = RideDate.find_or_create_by!(format_date_hash(row[:date])).id
+  next if row[:max_temperature_f].nil?
+  next if row[:mean_temperature_f].nil?
+  next if row[:min_temperature_f].nil?
+  next if row[:mean_humidity].nil?
+  next if row[:mean_visibility_miles].nil?
+  next if row[:mean_wind_speed_mph].nil?
+  next if row[:precipitation_inches].nil?
+
+  condition = Condition.create!(ride_date_id: ride_date_id,
+                                  max_temperature: row[:max_temperature_f],
+                                  mean_temperature: row[:mean_temperature_f],
+                                  min_temperature: row[:min_temperature_f],
+                                  mean_humidity: row[:mean_humidity],
+                                  mean_visibility: row[:mean_visibility_miles],
+                                  mean_wind_speed: row[:mean_wind_speed_mph],
+                                  precipitation: row[:precipitation_inches])
 end

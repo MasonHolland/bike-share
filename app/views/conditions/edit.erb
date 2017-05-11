@@ -1,23 +1,37 @@
-<h1>Edit Trip [<%= @trip.id %>]</h1>
+<header>
+  <a href="/"><img src="/bike_share_logo.jpg"></a>
+  <nav>
+    <ul>
+      <li><a class="current_page" href="/conditions">Weather</a></li>
+      <li><a href="/trips">Trips</a></li>
+      <li><a href="/stations">Stations</a></li>
+    </ul>
+  </nav>
+</header>
 
-<form action="/trips/<%=@trip.id%>" method="post">
-  <p>Please fill in all fields with information you would like to change</p>
+<div class="show">
+<h1>Edit Condition [<%= @condition.id %>]</h1>
+
+<form action="/conditions/<%=@condition.id%>" method="post">
+  <p>Please update fields to change weather conditions.</p>
   <input type="hidden" name="_method" value="PUT">
-  <h3>Date</h3>
-  <input type="date" name="condition[date]" value="<%= @condition.date %>"><br>
-  <h3>Max Temperature</h3>
-  <input type="integer" name="condition[max_temp]" value="<%= @condition.max_temperature %>"><br>
-  <h3>Mean Temperature</h3>
-  <input type="integer" name="condition[mean_temp]" value="<%= @condition.mean_temperature %>"><br>
-  <h3>Min Temperature</h3>
-  <input type="integer" name="condition[min_temp]" value="<%= @condition.min_temperature %>"><br>
-  <h3>Mean Humidity</h3>
-  <input type="integer" name="condition[mean_humidity]" value="<%= @condition.mean_humidity %>"><br>
-  <h3>Mean Visibility (in Miles)</h3>
-  <input type="integer" name="condition[mean_visibility]" value="<%= @condition.mean_visibility %>"><br>
-  <h3>Mean Wind Speed (mph)</h3>
-  <input type="integer" name="condition[mean_wind_speed]" value="<%= @condition.mean_wind_speed %>"><br>
-  <h3>Precipitation (inches)</h3>
-  <input type="integer" name="condition[precipitation]" value="<%= @condition.precipitation %>"><br>
+  <h2>Date</h2>
+  <input type="date" name="condition[date]" value="<%= @condition.ride_date.day %>">
+  <h2>Max Temperature</h2>
+  <input type="integer" name="condition[max_temperature]" value="<%= @condition.max_temperature %>">
+  <h2>Mean Temperature</h2>
+  <input type="integer" name="condition[mean_temperature]" value="<%= @condition.mean_temperature %>">
+  <h2>Min Temperature</h2>
+  <input type="integer" name="condition[min_temperature]" value="<%= @condition.min_temperature %>">
+  <h2>Mean Humidity</h2>
+  <input type="integer" name="condition[mean_humidity]" value="<%= @condition.mean_humidity %>">
+  <h2>Mean Visibility (in Miles)</h2>
+  <input type="integer" name="condition[mean_visibility]" value="<%= @condition.mean_visibility %>">
+  <h2>Mean Wind Speed (mph)</h2>
+  <input type="integer" name="condition[mean_wind_speed]" value="<%= @condition.mean_wind_speed %>">
+  <h2>Precipitation (inches)</h2>
+  <input type="integer" name="condition[precipitation]" value="<%= @condition.precipitation %>">
   <input type="submit" value="Submit changes">
 </form>
+<p><a href="/conditions">Back to Weather Conditions</a></p>
+</div>
