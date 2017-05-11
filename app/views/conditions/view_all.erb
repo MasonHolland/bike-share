@@ -1,6 +1,15 @@
-<h1>All Conditions</h1>
+<header>
+  <a href="/"><img src="/bike_share_logo.jpg"></a>
+  <nav>
+    <ul>
+      <li><a class="current_page" href="/conditions">Weather</a></li>
+      <li><a href="/trips">Trips</a></li>
+      <li><a href="/stations">Stations</a></li>
+    </ul>
+  </nav>
+</header>
 
-<table>
+<table class="trips-table conditions">
   <tr>
     <th>Date</th>
     <th>Max Temperature</th>
@@ -10,7 +19,10 @@
     <th>Mean Visibility (in Miles)</th>
     <th>Mean Wind Speed (mph)</th>
     <th>Precipitation (inches)</th>
+    <th>Additional Info</th>
+    <th>Delete</th>
   </tr>
+
   <% @conditions.each do |condition| %>
   <tr>
     <td><%= condition.ride_date.month %>-<%= condition.ride_date.day %>-<%= condition.ride_date.year %></td>
@@ -29,5 +41,7 @@
   <% end %>
   </tr>
 </table>
+
+<footer></footer>
 
 <%= will_paginate @conditions %>

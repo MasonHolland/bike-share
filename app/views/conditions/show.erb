@@ -1,14 +1,29 @@
-<h1>Condition Date <%= @condition.ride_date.month %>-<%= @condition.ride_date.day %>-<%= @condition.ride_date.year %></h1>
+<header>
+  <a href="/"><img src="/bike_share_logo.jpg"></a>
+  <nav>
+    <ul>
+      <li><a class="current_page" href="/conditions">Weather</a></li>
+      <li><a href="/trips">Trips</a></li>
+      <li><a href="/stations">Stations</a></li>
+    </ul>
+  </nav>
+</header>
 
-<h3>Max Temperature: <%= @condition.max_temperature %></h3>
-<h3>Mean Temperature: <%= @condition.mean_temperature %></h3>
-<h3>Min Temperature: <%= @condition.min_temperature %></h3>
-<h3>Mean Humidity: <%= @condition.mean_humidity %></h3>
-<h3>Mean Visibility (in Miles): <%= @condition.mean_visibility %></h3>
-<h3>Mean Wind Speed (mph): <%= @condition.mean_wind_speed %></h3>
-<h3>Precipitation (inches): <%= @condition.precipitation %></h3>
+<div class="show">
+<h1>Weather Conditions</h1>
+<p><span class="show-attribute">Date: </span><%= @condition.ride_date.month %>-<%= @condition.ride_date.day %>-<%= @condition.ride_date.year %></p>
+
+<p><span class="show-attribute">Max Temperature: </span><%= @condition.max_temperature %></p>
+<p><span class="show-attribute">Mean Temperature: </span><%= @condition.mean_temperature %></p>
+<p><span class="show-attribute">Min Temperature: </span><%= @condition.min_temperature %></p>
+<p><span class="show-attribute">Mean Humidity: </span><%= @condition.mean_humidity %></p>
+<p><span class="show-attribute">Mean Visibility (in Miles): </span><%= @condition.mean_visibility %></p>
+<p><span class="show-attribute">Mean Wind Speed (mph): </span><%= @condition.mean_wind_speed %></p>
+<p><span class="show-attribute">Precipitation (inches): </span><%= @condition.precipitation %></p>
 <a href="/conditions/<%=@condition.id%>/edit">Edit</a>
 <form action="/conditions/<%=@condition.id%>" method="post">
   <input type="hidden" name="_method" value="DELETE">
   <input type="submit" value="Delete">
 </form>
+<p><a href="/conditions">Back to Weather Conditions</a></p>
+</div>
