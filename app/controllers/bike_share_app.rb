@@ -171,7 +171,9 @@ class BikeShareApp < Sinatra::Base
 
   put '/conditions/:id' do |id|
     @condition = Condition.find(params[:id])
-    @condition.update(params[:condition])
+    condition_details = params[:condition]
+    condition_details[:ride_date_id] = RideDate.find_or_create_by(RideDate.format_date_hash(condition_details["ride_date_id"])).id
+    @condition.update(condition_details)
     redirect "conditions/#{params[:id]}"
   end
 

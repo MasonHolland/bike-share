@@ -45,8 +45,8 @@ class Station < ActiveRecord::Base
       "No rides have begun at this station"
     else
       end_station_id = Station.find(station_id).start_station.trips.group(:end_station_id).order('count_id asc').count('id').keys.last
-    end
       EndStation.find(end_station_id).station.name
+    end
   end
 
   def self.most_frequent_origination_station(station_id)
@@ -54,8 +54,8 @@ class Station < ActiveRecord::Base
       "No rides have ended at this station"
     else
       start_station_id = Station.find(station_id).end_station.trips.group(:start_station_id).order('count_id asc').count('id').keys.last
+      StartStation.find(start_station_id).station.name
     end
-    StartStation.find(start_station_id).station.name
   end
 
   def self.date_with_most_trips(station_id)
@@ -81,6 +81,7 @@ class Station < ActiveRecord::Base
      zip
     end
   end
+
   def self.most_frequent_bike_id_at_station(station_id)
     if Station.find(station_id).start_station.nil?
       "No rides have started at this station"
@@ -113,5 +114,4 @@ class Station < ActiveRecord::Base
       station.name
     end
   end
-
 end

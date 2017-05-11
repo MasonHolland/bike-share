@@ -13,8 +13,8 @@ RSpec.describe "user can see form for creating a new station" do
                                  precipitation:     "T")
 
     visit('/conditions')
-    click_on "Create New Condition"
+    click_on "Create New Weather Condition"
 
-    expect(page).to have_content("Create New Conditions")
+    expect(page).to have_content("Create New Weather Condition")
   end
 end

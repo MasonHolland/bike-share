@@ -13,7 +13,7 @@ RSpec.describe 'when a user visits the all conditions page' do
                                  precipitation:     "T")
 
     visit('/conditions')
-    click_on "View Conditions"
+    click_on "View Weather Conditions"
     expect(page).to have_content("70")
     expect(current_path).to eq('/conditions/view_all')
   end
