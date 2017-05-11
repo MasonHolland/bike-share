@@ -45,8 +45,8 @@ class Station < ActiveRecord::Base
       "No rides have begun at this station"
     else
       end_station_id = Station.find(station_id).start_station.trips.group(:end_station_id).order('count_id asc').count('id').keys.last
-    end
       EndStation.find(end_station_id).station.name
+    end
   end
 
   def self.most_frequent_origination_station(station_id)
